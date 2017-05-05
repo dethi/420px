@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS images;
+DROP TABLE IF EXISTS images CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users (
     id SERIAL,
@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 CREATE TABLE images (
     id SERIAL,
-    hash VARCHAR(255) NOT NULL,
+    filename VARCHAR(255) NOT NULL,
     user_id BIGINT UNSIGNED NOT NULL,
 
     PRIMARY KEY (id),

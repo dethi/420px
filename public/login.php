@@ -7,8 +7,6 @@ use App\Utils;
 Utils::redirectIfAuth("/");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
     try {
         $ok = Auth::attempt($_POST['email'], $_POST['password']);
         if ($ok) {
@@ -18,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "An error occured. Please try later.";
     }
 }
-
 ?>
 
 <?php include(__DIR__.'/fragments/header.php'); ?>

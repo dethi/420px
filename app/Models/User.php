@@ -33,7 +33,7 @@ class User
     public static function find(int $id)
     {
         $query = DB::get()->prepare('SELECT * FROM users WHERE id=?');
-        if (!$query->execute(array($id))) {
+        if (!$query->execute([$id])) {
             return null;
         }
 
