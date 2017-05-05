@@ -29,16 +29,35 @@ class Image
         return new Image($img->id, $img->filename, $img->user_id);
     }
 
-    public static function findByUser(int $user_id)
+    public static function findByUser(int $user_id, int $limit = 20, int $offset = 0)
     {
-        $query = DB::get()->prepare('SELECT * FROM images WHERE user_id=?');
-        if (!$query->execute([$user_id])) {
+        $query = DB::get()->prepare('SELECT * FROM images WHERE user_id=:user_id LIMIT :limit OFFSET :offset');
+        $query->bindParam(':user_id', $user_id);
+        $query->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $query->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+        if (!$query->execute()) {
             return null;
         }
+        $images = $query->fetchAll(PDO::FETCH_OBJ);
+        return array_map(function ($img) {
+            return new Image($img->id, $img->filename, $img->user_id);
+        }, $images);
+    }
 
-        // TODO return array
-        $img = $query->fetch(PDO::FETCH_OBJ);
-        return new Image($img->id, $img->filename, $img->user_id);
+    public static function all(int $limit = 20, int $offset = 0)
+    {
+        $query = DB::get()->prepare('SELECT * FROM images LIMIT :limit OFFSET :offset');
+        $query->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $query->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+        if (!$query->execute()) {
+            return null;
+        }
+        $images = $query->fetchAll(PDO::FETCH_OBJ);
+        return array_map(function ($img) {
+            return new Image($img->id, $img->filename, $img->user_id);
+        }, $images);
     }
 
     public function save()

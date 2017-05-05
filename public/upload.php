@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p>ERROR: <?php echo $error ?>
 <?php elseif (!empty($filename)) : ?>
     <div>
-        <img src="/storage/<?php echo $filename ?>">
+        <img src="/storage/<?php echo $filename; ?>">
     </div>
 <?php endif; ?>
 
