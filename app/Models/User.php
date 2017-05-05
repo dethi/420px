@@ -58,7 +58,7 @@ class User
             $query = DB::get()->prepare('INSERT INTO users(name, email, password) VALUES (?, ?, ?)');
             return $query->execute([$this->name, $this->email, $this->password]);
         } else {
-            throw new Exception("Not implemented");
+            throw new Exception('Not implemented');
         }
     }
 

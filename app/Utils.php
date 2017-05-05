@@ -11,14 +11,14 @@ class Utils
 {
     public static function redirectTo(string $url)
     {
-        header("Location: ".$url);
+        header('Location: '.$url);
         exit();
     }
 
     public static function redirectIfAuth(string $url)
     {
         if (Auth::check()) {
-            header("Location: ".$url);
+            header('Location: '.$url);
             exit();
         }
     }
@@ -26,7 +26,7 @@ class Utils
     public static function redirectIfGuest(string $url)
     {
         if (!Auth::check()) {
-            header("Location: ".$url);
+            header('Location: '.$url);
             exit();
         }
     }

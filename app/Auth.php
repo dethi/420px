@@ -40,4 +40,13 @@ class Auth
         $_SESSION[self::SESSION_KEY] = $user->id;
         return true;
     }
+
+    public static function logout()
+    {
+        session_destroy();
+        $user = null;
+
+        session_start();
+        session_regenerate_id(true);
+    }
 }

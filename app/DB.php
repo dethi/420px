@@ -6,10 +6,6 @@ use PDO;
 
 class DB
 {
-    private static $dsn = 'mysql:host=localhost;dbname=420px';
-    private static $user = 'root';
-    private static $password = '';
-
     private $_db;
     private static $_instance;
 

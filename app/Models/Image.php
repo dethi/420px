@@ -60,13 +60,19 @@ class Image
         }, $images);
     }
 
+    public function delete()
+    {
+        $query = DB::get()->prepare('DELETE FROM images WHERE id = ?');
+        return $query->execute([$this->id]);
+    }
+
     public function save()
     {
         if (empty($this->id)) {
             $query = DB::get()->prepare('INSERT INTO images(filename, user_id) VALUES (?, ?)');
             return $query->execute([$this->filename, $this->user_id]);
         } else {
-            throw new Exception("Not implemented");
+            throw new Exception('Not implemented');
         }
     }
 
