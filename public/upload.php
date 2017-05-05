@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $img = Image::create($filename, $user_id);
             $img->save();
         } catch (PDOException $e) {
-            $error = "An error occured";
+            $error = 'An error occured.';
         }
     }
 }

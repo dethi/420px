@@ -8,16 +8,12 @@ $images = Image::all();
 ?>
 
 <?php include __DIR__.'/fragments/header.php'; ?>
-<?php if (Auth::check()) : ?>
-<p>
-    Hello <?php echo Auth::user()->name; ?>
-</p>
-<?php endif; ?>
-
 <h1>Welcome to 420px</h1>
 
 <?php foreach ($images as $img) : ?>
-<img src="/storage/<?php echo $img->filename; ?>">
+    <a href="/user.php?id=<?php echo $img->user_id; ?>">
+        <img src="/storage/<?php echo $img->filename; ?>">
+    </a>
 <?php endforeach; ?>
 
 <?php include __DIR__.'/fragments/footer.php'; ?>

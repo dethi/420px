@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Auth::attempt($_POST['email'], $_POST['password']);
         Utils::redirectTo("/");
     } catch (PDOException $e) {
-        $error = "Cannot create the user accounts. Please try another with another email.";
+        $error = 'Cannot create the user accounts. Please try another with another email.';
     }
 }
 
