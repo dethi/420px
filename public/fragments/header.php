@@ -1,3 +1,7 @@
+<?php
+use App\Auth;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,3 +11,18 @@
     <title>420px</title>
 </head>
 <body>
+
+<?php if (Auth::check()) : ?>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/user.php">My Profile</a></li>
+        <li><a href="/upload.php">Upload</a></li>
+        <li><a href="/logout.php">Logout</a></li>
+    </ul>
+<?php else : ?>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login.php">Login</a></li>
+        <li><a href="/signup.php">Sign up</a></li>
+    </ul>
+<?php endif; ?>
