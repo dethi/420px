@@ -3,8 +3,8 @@ require(__DIR__.'/../app/Bootstrap.php');
 
 use App\Auth;
 use App\Utils;
+use App\Filters;
 use App\Models\Image;
-use Intervention\Image\ImageManagerStatic as ImageManager;
 
 Utils::redirectIfGuest("/");
 
@@ -29,39 +29,8 @@ $save = $mode == 'save';
 
 $op = $_GET['op'] ?? '';
 $level = max(-100, min(100, intval($_GET['level'] ?? 0)));
-$canvas = ImageManager::make($imgPath);
 
-switch ($op) {
-    case 'greyscale':
-        $canvas->greyscale();
-        break;
-    case 'sepia':
-        $canvas->greyscale();
-        $canvas->colorize(25, 11, 0);
-        break;
-    case 'gauss':
-        $canvas->blur();
-        break;
-    case 'edge':
-        $ressource = $canvas->getCore();
-        imagefilter($ressource, IMG_FILTER_EDGEDETECT);
-        break;
-    case 'pixelate':
-        $canvas->pixelate(12);
-        break;
-    case 'invert':
-        $canvas->invert();
-        break;
-    case 'contrast':
-        $canvas->contrast($level);
-        break;
-    case 'brightness':
-        $canvas->brightness($level);
-        break;
-    default:
-        break;
-}
-
+$canvas = Filters::apply($imgPath, $op, $level);
 if ($preview) {
     echo $canvas->response('png');
     exit();
