@@ -10,10 +10,13 @@ Utils::redirectIfGuest("/");
 
 $img = null;
 if (!empty($_GET['img_id'])) {
-    try {
-        $img = Image::find($_GET['img_id']);
-    } catch (PDOException $e) {
-        Utils::redirectTo('/');
+    $imgId = $_GET['img_id'];
+    if (filter_var($imgId, FILTER_VALIDATE_INT)) {
+        try {
+            $img = Image::find($imgId);
+        } catch (PDOException $e) {
+            Utils::redirectTo('/');
+        }
     }
 }
 

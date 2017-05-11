@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         && $email != null
         && filter_var($email, FILTER_VALIDATE_EMAIL)
         && $password != null;
+
     if ($ok) {
         $user = User::create($name, $email, $password);
         try {

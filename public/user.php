@@ -8,9 +8,14 @@ use App\Models\Image;
 
 $user = null;
 if (!empty($_GET['id'])) {
-    try {
-        $user = User::find($_GET['id']);
-    } catch (PDOException $e) {
+    $userId = $_GET['id'];
+    if (filter_var($userId, FILTER_VALIDATE_INT)) {
+        try {
+            $user = User::find($userId);
+        } catch (PDOException $e) {
+            Utils::redirectTo('/');
+        }
+    } else {
         Utils::redirectTo('/');
     }
 }
