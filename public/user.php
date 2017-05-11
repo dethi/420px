@@ -38,8 +38,6 @@ try {
 ?>
 
 <?php include __DIR__.'/fragments/header.php'; ?>
-<h1>Profile</h1>
-
 <h2><?= $user->name ?></h2>
 
 <div>

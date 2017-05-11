@@ -19,12 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Cannot create the user accounts. Please try another with another email.';
     }
 }
-
 ?>
 
 <?php include(__DIR__.'/fragments/header.php'); ?>
-<h1>Sign Up</h1>
-
 <?php if (!empty($error)) : ?>
 <p>ERROR: <?= $error ?>
 <?php endif; ?>

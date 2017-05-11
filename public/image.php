@@ -78,32 +78,47 @@ $previewUrl = $editUrl.'&mode=preview&op='.urlencode($op).'&level='.$level;
 ?>
 
 <?php include __DIR__.'/fragments/header.php'; ?>
-<h1>Image editing</h1>
 
-<img src="<?= htmlentities($previewUrl) ?>">
+<div class="row">
+    <div class="col s6">
+        <img src="<?= htmlentities($previewUrl) ?>">
+    </div>
 
-<div>
-    <a href="<?= htmlentities($deleteUrl) ?>">Delete</a>
-    <a href="<?= htmlentities($saveUrl) ?>">Save</a>
-</div>
+    <div class="col s6">
+        <div class="row">
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($deleteUrl) ?>">
+                <i class="material-icons left">delete</i>
+                Delete
+            </a>
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($saveUrl) ?>">
+                <i class="material-icons left">save</i>
+                Save
+            </a>
+        </div>
 
-<div>
-    <a href="<?= htmlentities($editUrl.'&op=greyscale') ?>">Greyscale</a>
-    <a href="<?= htmlentities($editUrl.'&op=sepia') ?>">Sepia</a>
-    <a href="<?= htmlentities($editUrl.'&op=gauss') ?>">Blur</a>
-    <a href="<?= htmlentities($editUrl.'&op=edge') ?>">Edge Detection</a>
-    <a href="<?= htmlentities($editUrl.'&op=pixelate') ?>">Pixelate</a>
-    <a href="<?= htmlentities($editUrl.'&op=invert') ?>">Invert</a>
+        <div class="row">
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=greyscale') ?>">Greyscale</a>
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=sepia') ?>">Sepia</a>
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=gauss') ?>">Blur</a>
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=edge') ?>">Edge Detection</a>
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=pixelate') ?>">Pixelate</a>
+            <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=invert') ?>">Invert</a>
 
-    <p>Contrast:
-        <a href="<?= htmlentities($editUrl.'&op=contrast&level='.($level+10)) ?>">+</a>
-        <a href="<?= htmlentities($editUrl.'&op=contrast&level='.($level-10)) ?>">-</a>
-    </p>
+            <p>Contrast:
+                <a class="waves-effect waves-light btn"
+                    href="<?= htmlentities($editUrl.'&op=contrast&level='.($level+10)) ?>">+</a>
+                <a class="waves-effect waves-light btn"
+                    href="<?= htmlentities($editUrl.'&op=contrast&level='.($level-10)) ?>">-</a>
+            </p>
 
-    <p>Brightness:
-        <a href="<?= htmlentities($editUrl.'&op=brightness&level='.($level+10)) ?>">+</a>
-        <a href="<?= htmlentities($editUrl.'&op=brightness&level='.($level-10)) ?>">-</a>
-    </p>
+            <p>Brightness:
+                <a class="waves-effect waves-light btn"
+                    href="<?= htmlentities($editUrl.'&op=brightness&level='.($level+10)) ?>">+</a>
+                <a class="waves-effect waves-light btn"
+                    href="<?= htmlentities($editUrl.'&op=brightness&level='.($level-10)) ?>">-</a>
+            </p>
+        </div>
+    </div>
 </div>
 
 <?php include __DIR__.'/fragments/footer.php'; ?>

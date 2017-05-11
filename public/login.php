@@ -19,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php include(__DIR__.'/fragments/header.php'); ?>
-<h1>Login</h1>
-
 <?php if (!empty($error)) : ?>
 <p>ERROR: <?= $error ?>
 <?php endif; ?>

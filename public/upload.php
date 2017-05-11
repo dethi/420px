@@ -28,8 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php include(__DIR__.'/fragments/header.php'); ?>
-<h1>Upload</h1>
-
 <?php if (!empty($error)) : ?>
     <p>ERROR: <?= $error ?>
 <?php elseif (!empty($filename)) : ?>
