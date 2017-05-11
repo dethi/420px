@@ -1,6 +1,7 @@
 <?php
 require(__DIR__.'/../app/Bootstrap.php');
 
+use App\Csrf;
 use App\Auth;
 use App\Utils;
 use App\Models\Image;
@@ -8,6 +9,8 @@ use App\Models\Image;
 Utils::redirectIfGuest("/");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    Csrf::check($_POST['_token']);
+
     try {
         $filename = Utils::saveUploadedImage($_FILES['image'], __DIR__.'/storage');
     } catch (Exception $e) {
@@ -37,6 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <form name="upload" action="/upload.php" method="POST" enctype="multipart/form-data">
+    <?= Csrf::field() ?>
+
     <div class="file-field input-field">
         <div class="btn">
             <span>File</span>

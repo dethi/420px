@@ -3,10 +3,13 @@ require(__DIR__.'/../app/Bootstrap.php');
 
 use App\Auth;
 use App\Utils;
+use App\Csrf;
 
 Utils::redirectIfAuth("/");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    Csrf::check($_POST['_token']);
+
     try {
         $ok = Auth::attempt($_POST['email'], $_POST['password']);
         if ($ok) {
@@ -28,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <form name="login" action="/login.php" method="POST">
+    <?= Csrf::field() ?>
+
     <div class="input-field">
         <i class="material-icons prefix">email</i>
         <input id="email" name="email" type="email" class="validate">
