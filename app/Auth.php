@@ -29,7 +29,7 @@ class Auth
     public static function attempt(string $email, $password)
     {
         $user = User::findByEmail($email);
-        if (user == null) {
+        if ($user == null) {
             return false;
         }
 
