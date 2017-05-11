@@ -43,24 +43,36 @@ try {
 ?>
 
 <?php include __DIR__.'/fragments/header.php'; ?>
-<h2><?= $user->name ?></h2>
-
-<div>
-    <a href="<?= '/rss.php?id='.$user->id ?>">RSS</a>
+<div class="row">
+    <div class="col s6">
+        <h2><?= $user->name ?></h2>
+    </div>
+    <div class="col s6">
+        <a class="waves-effect waves-light btn" href="<?= '/rss.php?id='.$user->id ?>">
+            <i class="material-icons">rss_feed</i>
+        </a>
+    </div>
 </div>
 
 <div>
     <?php foreach ($images as $img) : ?>
-        <img src="/storage/<?= $img->filename ?>">
-        <?php
-        if ($isOwner) {
-            $deleteUrl = '/user.php?delete=1&img_id='.$img->id;
-            echo '<a href="'.htmlentities($deleteUrl).'">Delete</a>';
+        <div class="row">
+            <div class="col s6">
+                <img class="responsive-img" src="/storage/<?= $img->filename ?>">
+            </div>
 
-            $editUrl = '/image.php?img_id='.$img->id;
-            echo '<a href="'.htmlentities($editUrl).'">Edit</a>';
-        }
-        ?>
+            <div class="col s6">
+                <?php
+                if ($isOwner) {
+                    $deleteUrl = '/user.php?delete=1&img_id='.$img->id;
+                    echo '<div class="row"><a class="waves-effect waves-light btn" href="'.htmlentities($deleteUrl).'"><i class="material-icons left">delete</i> Delete</a></div>';
+
+                    $editUrl = '/image.php?img_id='.$img->id;
+                    echo '<div class="row"><a class="waves-effect waves-light btn" href="'.htmlentities($editUrl).'"><i class="material-icons left">mode_edit</i>Edit</a></div>';
+                }
+                ?>
+            </div>
+        </div>
     <?php endforeach; ?>
 </div>
 

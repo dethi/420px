@@ -32,22 +32,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <p>Invalid email or password</p>
 <?php endif; ?>
 
-<form name="login" action="/login.php" method="POST">
-    <?= Csrf::field() ?>
+<div class="row">
+    <div class="col s6 offset-s3">
+        <form name="login" action="/login.php" method="POST">
+            <?= Csrf::field() ?>
 
-    <div class="input-field">
-        <i class="material-icons prefix">email</i>
-        <input id="email" name="email" type="email" class="validate">
-        <label for="email">Email</label>
-    </div>
-    <div class="input-field">
-        <i class="material-icons prefix">lock</i>
-        <input id="password" name="password" type="password" class="validate">
-        <label for="password">Password</label>
-    </div>
+            <div class="input-field">
+                <i class="material-icons prefix">email</i>
+                <input id="email" name="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">lock</i>
+                <input id="password" name="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
 
-    <button class="btn waves-effect waves-light" type="submit" name="action">
-        Login
-    </button>
-</form>
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
 <?php include(__DIR__.'/fragments/footer.php'); ?>

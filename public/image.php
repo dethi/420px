@@ -53,7 +53,7 @@ $previewUrl = $editUrl.'&mode=preview&op='.urlencode($op).'&level='.$level;
 
 <div class="row">
     <div class="col s6">
-        <img src="<?= htmlentities($previewUrl) ?>">
+        <img class="responsive-img" src="<?= htmlentities($previewUrl) ?>">
     </div>
 
     <div class="col s6">
@@ -71,24 +71,38 @@ $previewUrl = $editUrl.'&mode=preview&op='.urlencode($op).'&level='.$level;
         <div class="row">
             <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=greyscale') ?>">Greyscale</a>
             <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=sepia') ?>">Sepia</a>
+        </div>
+
+        <div class="row">
             <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=gauss') ?>">Blur</a>
             <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=edge') ?>">Edge Detection</a>
+        </div>
+
+        <div class="row">
             <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=pixelate') ?>">Pixelate</a>
             <a class="waves-effect waves-light btn" href="<?= htmlentities($editUrl.'&op=invert') ?>">Invert</a>
+        </div>
 
-            <p>Contrast:
-                <a class="waves-effect waves-light btn"
-                    href="<?= htmlentities($editUrl.'&op=contrast&level='.($level+10)) ?>">+</a>
-                <a class="waves-effect waves-light btn"
-                    href="<?= htmlentities($editUrl.'&op=contrast&level='.($level-10)) ?>">-</a>
-            </p>
+        <div class="row">
+            <div class="row">
+                <div class="col s6"><h5>Contrast</h5></div>
+                <div class="col s6">
+                    <a class="waves-effect waves-light btn"
+                        href="<?= htmlentities($editUrl.'&op=contrast&level='.($level+10)) ?>">+</a>
+                    <a class="waves-effect waves-light btn"
+                        href="<?= htmlentities($editUrl.'&op=contrast&level='.($level-10)) ?>">-</a>
+                </div>
+            </div>
 
-            <p>Brightness:
-                <a class="waves-effect waves-light btn"
-                    href="<?= htmlentities($editUrl.'&op=brightness&level='.($level+10)) ?>">+</a>
-                <a class="waves-effect waves-light btn"
-                    href="<?= htmlentities($editUrl.'&op=brightness&level='.($level-10)) ?>">-</a>
-            </p>
+            <div class="row">
+                <div class="col s6"><h5>Brightness</h5></div>
+                <div class="col s6">
+                    <a class="waves-effect waves-light btn"
+                        href="<?= htmlentities($editUrl.'&op=brightness&level='.($level+10)) ?>">+</a>
+                    <a class="waves-effect waves-light btn"
+                        href="<?= htmlentities($editUrl.'&op=brightness&level='.($level-10)) ?>">-</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
