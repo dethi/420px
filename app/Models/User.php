@@ -38,6 +38,9 @@ class User
         }
 
         $user = $query->fetch(PDO::FETCH_OBJ);
+        if ($user == null) {
+            return null;
+        }
         return new User($user->id, $user->name, $user->email, $user->password);
     }
 
@@ -49,6 +52,9 @@ class User
         }
 
         $user = $query->fetch(PDO::FETCH_OBJ);
+        if ($user == null) {
+            return null;
+        }
         return new User($user->id, $user->name, $user->email, $user->password);
     }
 

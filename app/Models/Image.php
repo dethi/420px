@@ -26,6 +26,9 @@ class Image
         }
 
         $img = $query->fetch(PDO::FETCH_OBJ);
+        if ($img == null) {
+            return null;
+        }
         return new Image($img->id, $img->filename, $img->user_id);
     }
 
