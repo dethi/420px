@@ -5,7 +5,7 @@ namespace App;
 use Exception;
 use App\Auth;
 use Intervention\Image\Exception\NotReadableException;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic as ImageManager;
 
 class Utils
 {
@@ -50,7 +50,7 @@ class Utils
         $filename = $filename.'.png';
 
         try {
-            $img = Image::make($filestruct['tmp_name']);
+            $img = ImageManager::make($filestruct['tmp_name']);
             $img->fit(420, 420);
             $img->save($filename);
         } catch (NotReadableException $e) {

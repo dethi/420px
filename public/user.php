@@ -20,9 +20,9 @@ if ($user == null && Auth::check()) {
 } elseif ($user == null) {
     Utils::redirectTo('/');
 }
-$canDelete = ($user == Auth::user());
+$isOwner = ($user == Auth::user());
 
-if ($canDelete && !empty($_GET['delete']) && !empty($_GET['img_id'])) {
+if ($isOwner && !empty($_GET['delete']) && !empty($_GET['img_id'])) {
     $img = Image::find($_GET['img_id']);
     if ($img != null && $img->user_id == $user->id) {
         $img->delete();
@@ -45,9 +45,12 @@ try {
 <?php foreach ($images as $img) : ?>
     <img src="/storage/<?php echo $img->filename; ?>">
     <?php
-    if ($canDelete) {
-        $url = '/user.php?delete=1&img_id='.$img->id;
-        echo '<a href="'.htmlentities($url).'">Delete</a>';
+    if ($isOwner) {
+        $deleteUrl = '/user.php?delete=1&img_id='.$img->id;
+        echo '<a href="'.htmlentities($deleteUrl).'">Delete</a>';
+
+        $editUrl = '/image.php?img_id='.$img->id;
+        echo '<a href="'.htmlentities($editUrl).'">Edit</a>';
     }
     ?>
 <?php endforeach; ?>
