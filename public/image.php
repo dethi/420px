@@ -28,6 +28,7 @@ $preview = $mode == 'preview';
 $save = $mode == 'save';
 
 $op = $_GET['op'] ?? '';
+$level = max(-100, min(100, intval($_GET['level'] ?? 0)));
 $canvas = ImageManager::make($imgPath);
 
 switch ($op) {
@@ -51,13 +52,11 @@ switch ($op) {
     case 'invert':
         $canvas->invert();
         break;
-    case '+c':
+    case 'contrast':
+        $canvas->contrast($level);
         break;
-    case '-c':
-        break;
-    case '+l':
-        break;
-    case '-l':
+    case 'brightness':
+        $canvas->brightness($level);
         break;
     default:
         break;
@@ -69,6 +68,7 @@ if ($preview) {
 } elseif ($save) {
     $canvas->save();
     $op = '';
+    $level = 0;
 }
 
 $deleteUrl = '/user.php?delete=1&img_id='.$img->id;
@@ -97,13 +97,13 @@ $previewUrl = $editUrl.'&mode=preview&op='.urlencode($op);
 
 
     <p>Contrast:
-        <a href="<?php echo htmlentities($editUrl.'&op='.urlencode('+c')) ?>">+</a>
-        <a href="<?php echo htmlentities($editUrl.'&op='.urlencode('-c')) ?>">-</a>
+        <a href="<?php echo htmlentities($editUrl.'&op=contrast&level='.($level+10)) ?>">+</a>
+        <a href="<?php echo htmlentities($editUrl.'&op=contrast&level='.($level-10)) ?>">-</a>
     </p>
 
-    <p>Luminosity:
-        <a href="<?php echo htmlentities($editUrl.'&op='.urlencode('+l')) ?>">+</a>
-        <a href="<?php echo htmlentities($editUrl.'&op='.urlencode('-l')) ?>">-</a>
+    <p>Brightness:
+        <a href="<?php echo htmlentities($editUrl.'&op=brightness&level='.($level+10)) ?>">+</a>
+        <a href="<?php echo htmlentities($editUrl.'&op=brightness&level='.($level-10)) ?>">-</a>
     </p>
 </div>
 
