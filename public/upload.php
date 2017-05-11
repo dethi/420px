@@ -39,7 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <form name="upload" action="/upload.php" method="POST" enctype="multipart/form-data">
-    <p>Select an image: <input type="file" name="image" /></p>
-    <p><input type="submit" value="Upload" /></p>
+    <div class="file-field input-field">
+        <div class="btn">
+            <span>File</span>
+            <input type="file" name="image">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+    </div>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">
+        Upload <i class="material-icons right">file_upload</i>
+    </button>
 </form>
+
+
 <?php include(__DIR__.'/fragments/footer.php'); ?>

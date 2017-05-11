@@ -30,9 +30,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <form name="signup" action="/signup.php" method="POST">
-    <p>Name: <input type="text" name="name" /></p>
-    <p>Email: <input type="text" name="email" /></p>
-    <p>Password: <input type="password" name="password" /></p>
-    <p><input type="submit" value="Sign Up" /></p>
+    <div class="input-field">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="name" name="name" type="text" class="validate">
+        <label for="name">Name</label>
+    </div>
+    <div class="input-field">
+        <i class="material-icons prefix">email</i>
+        <input id="email" name="email" type="email" class="validate">
+        <label for="email">Email</label>
+    </div>
+    <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input id="password" name="password" type="password" class="validate">
+        <label for="password">Password</label>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">
+        Sign Up
+    </button>
 </form>
+
 <?php include(__DIR__.'/fragments/footer.php'); ?>

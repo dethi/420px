@@ -15,18 +15,23 @@ use App\Auth;
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo">420px</a>
 
-<?php if (Auth::check()) : ?>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/user.php">My Profile</a></li>
-        <li><a href="/upload.php">Upload</a></li>
-        <li><a href="/logout.php">Logout</a></li>
-    </ul>
-<?php else : ?>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login.php">Login</a></li>
-        <li><a href="/signup.php">Sign up</a></li>
-    </ul>
-<?php endif; ?>
+        <?php if (Auth::check()) : ?>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/upload.php"><i class="material-icons">file_upload</i></a></li>
+                <li><a href="/user.php"><i class="material-icons">account_circle</i></a></li>
+                <li><a href="/logout.php"><i class="material-icons">power_settings_new</i></a></li>
+            </ul>
+        <?php else : ?>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/login.php">LOGIN</a></li>
+                <li><a href="/signup.php">SIGN UP</a></li>
+            </ul>
+        <?php endif; ?>
+    </div>
+</nav>
+
+<div class="container">

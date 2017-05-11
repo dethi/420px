@@ -30,8 +30,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <form name="login" action="/login.php" method="POST">
-    <p>Email: <input type="text" name="email" /></p>
-    <p>Password: <input type="password" name="password" /></p>
-    <p><input type="submit" value="Login" /></p>
+    <div class="input-field">
+        <i class="material-icons prefix">email</i>
+        <input id="email" name="email" type="email" class="validate">
+        <label for="email">Email</label>
+    </div>
+    <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input id="password" name="password" type="password" class="validate">
+        <label for="password">Password</label>
+    </div>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">
+        Login
+    </button>
 </form>
 <?php include(__DIR__.'/fragments/footer.php'); ?>
