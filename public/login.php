@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ok = Auth::attempt($_POST['email'], $_POST['password']);
         if ($ok) {
             Utils::redirectTo("/");
+        } else {
+            $error = "Email/password doesn't match";
         }
     } catch (PDOException $e) {
         $error = "An error occured. Please try later.";

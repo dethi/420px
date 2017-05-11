@@ -11,14 +11,26 @@ Utils::redirectIfAuth("/");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     Csrf::check($_POST['_token']);
 
-    $user = User::create($_POST['name'], $_POST['email'], $_POST['password']);
-    try {
-        $user->save();
+    $name = $_POST['name'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $password = $_POST['password'] ?? null;
 
-        Auth::attempt($_POST['email'], $_POST['password']);
-        Utils::redirectTo("/");
-    } catch (PDOException $e) {
-        $error = 'Cannot create the user accounts. Please try another with another email.';
+    $ok = $name != null
+        && $email != null
+        && filter_var($email, FILTER_VALIDATE_EMAIL)
+        && $password != null;
+    if ($ok) {
+        $user = User::create($name, $email, $password);
+        try {
+            $user->save();
+
+            Auth::attempt($email, $password);
+            Utils::redirectTo("/");
+        } catch (PDOException $e) {
+            $error = 'Cannot create the user accounts. Please try another with another email.';
+        }
+    } else {
+        $error = 'Invalid fields values.';
     }
 }
 ?>
