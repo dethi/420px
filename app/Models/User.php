@@ -32,7 +32,7 @@ class User
 
     public static function find(int $id)
     {
-        $query = DB::get()->prepare('SELECT * FROM users WHERE id=?');
+        $query = DB::get()->prepare('SELECT * FROM users WHERE id=? LIMIT 1');
         if (!$query->execute([$id])) {
             return null;
         }
@@ -46,7 +46,7 @@ class User
 
     public static function findByEmail(string $email)
     {
-        $query = DB::get()->prepare('SELECT * FROM users WHERE email=?');
+        $query = DB::get()->prepare('SELECT * FROM users WHERE email=? LIMIT 1');
         if (!$query->execute([$email])) {
             return null;
         }

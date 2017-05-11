@@ -20,7 +20,7 @@ class Image
 
     public static function find(int $id)
     {
-        $query = DB::get()->prepare('SELECT * FROM images WHERE id=?');
+        $query = DB::get()->prepare('SELECT * FROM images WHERE id=? LIMIT 1');
         if (!$query->execute([$id])) {
             return null;
         }
@@ -32,7 +32,7 @@ class Image
         return new Image($img->id, $img->filename, $img->user_id);
     }
 
-    public static function findByUser(int $user_id, int $limit = 20, int $offset = 0)
+    public static function findByUser(int $user_id, int $limit = 100, int $offset = 0)
     {
         $query = DB::get()->prepare('SELECT * FROM images WHERE user_id=:user_id LIMIT :limit OFFSET :offset');
         $query->bindParam(':user_id', $user_id);
@@ -48,7 +48,7 @@ class Image
         }, $images);
     }
 
-    public static function all(int $limit = 20, int $offset = 0)
+    public static function all(int $limit = 100, int $offset = 0)
     {
         $query = DB::get()->prepare('SELECT * FROM images LIMIT :limit OFFSET :offset');
         $query->bindParam(':limit', $limit, PDO::PARAM_INT);
