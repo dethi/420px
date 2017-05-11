@@ -40,19 +40,25 @@ try {
 <?php include __DIR__.'/fragments/header.php'; ?>
 <h1>Profile</h1>
 
-<h2><?php echo $user->name; ?></h2>
+<h2><?= $user->name ?></h2>
 
-<?php foreach ($images as $img) : ?>
-    <img src="/storage/<?php echo $img->filename; ?>">
-    <?php
-    if ($isOwner) {
-        $deleteUrl = '/user.php?delete=1&img_id='.$img->id;
-        echo '<a href="'.htmlentities($deleteUrl).'">Delete</a>';
+<div>
+    <a href="<?= '/rss.php?id='.$user->id ?>">RSS</a>
+</div>
 
-        $editUrl = '/image.php?img_id='.$img->id;
-        echo '<a href="'.htmlentities($editUrl).'">Edit</a>';
-    }
-    ?>
-<?php endforeach; ?>
+<div>
+    <?php foreach ($images as $img) : ?>
+        <img src="/storage/<?= $img->filename ?>">
+        <?php
+        if ($isOwner) {
+            $deleteUrl = '/user.php?delete=1&img_id='.$img->id;
+            echo '<a href="'.htmlentities($deleteUrl).'">Delete</a>';
+
+            $editUrl = '/image.php?img_id='.$img->id;
+            echo '<a href="'.htmlentities($editUrl).'">Edit</a>';
+        }
+        ?>
+    <?php endforeach; ?>
+</div>
 
 <?php include __DIR__.'/fragments/footer.php'; ?>

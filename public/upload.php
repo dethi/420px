@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h1>Upload</h1>
 
 <?php if (!empty($error)) : ?>
-    <p>ERROR: <?php echo $error ?>
+    <p>ERROR: <?= $error ?>
 <?php elseif (!empty($filename)) : ?>
     <div>
-        <img src="/storage/<?php echo $filename; ?>">
+        <img src="/storage/<?= $filename ?>">
     </div>
 <?php endif; ?>
 

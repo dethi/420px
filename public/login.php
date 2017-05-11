@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h1>Login</h1>
 
 <?php if (!empty($error)) : ?>
-<p>ERROR: <?php echo $error ?>
+<p>ERROR: <?= $error ?>
 <?php endif; ?>
 
 <?php if (!empty($ok)) : ?>

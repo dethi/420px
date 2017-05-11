@@ -11,8 +11,8 @@ $images = Image::all();
 <h1>Welcome to 420px</h1>
 
 <?php foreach ($images as $img) : ?>
-    <a href="/user.php?id=<?php echo $img->user_id; ?>">
-        <img src="/storage/<?php echo $img->filename; ?>">
+    <a href="/user.php?id=<?= $img->user_id ?>">
+        <img src="/storage/<?= $img->filename ?>">
     </a>
 <?php endforeach; ?>
 

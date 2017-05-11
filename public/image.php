@@ -73,37 +73,36 @@ if ($preview) {
 
 $deleteUrl = '/user.php?delete=1&img_id='.$img->id;
 $editUrl = '/image.php?img_id='.$img->id;
-$saveUrl = $editUrl.'&mode=save&op='.urlencode($op);
-$previewUrl = $editUrl.'&mode=preview&op='.urlencode($op);
+$saveUrl = $editUrl.'&mode=save&op='.urlencode($op).'&level='.$level;
+$previewUrl = $editUrl.'&mode=preview&op='.urlencode($op).'&level='.$level;
 ?>
 
 <?php include __DIR__.'/fragments/header.php'; ?>
 <h1>Image editing</h1>
 
-<img src="<?php echo htmlentities($previewUrl) ?>">
+<img src="<?= htmlentities($previewUrl) ?>">
 
 <div>
-    <a href="<?php echo htmlentities($deleteUrl) ?>">Delete</a>
-    <a href="<?php echo htmlentities($saveUrl) ?>">Save</a>
+    <a href="<?= htmlentities($deleteUrl) ?>">Delete</a>
+    <a href="<?= htmlentities($saveUrl) ?>">Save</a>
 </div>
 
 <div>
-    <a href="<?php echo htmlentities($editUrl.'&op=greyscale') ?>">Greyscale</a>
-    <a href="<?php echo htmlentities($editUrl.'&op=sepia') ?>">Sepia</a>
-    <a href="<?php echo htmlentities($editUrl.'&op=gauss') ?>">Blur</a>
-    <a href="<?php echo htmlentities($editUrl.'&op=edge') ?>">Edge Detection</a>
-    <a href="<?php echo htmlentities($editUrl.'&op=pixelate') ?>">Pixelate</a>
-    <a href="<?php echo htmlentities($editUrl.'&op=invert') ?>">Invert</a>
-
+    <a href="<?= htmlentities($editUrl.'&op=greyscale') ?>">Greyscale</a>
+    <a href="<?= htmlentities($editUrl.'&op=sepia') ?>">Sepia</a>
+    <a href="<?= htmlentities($editUrl.'&op=gauss') ?>">Blur</a>
+    <a href="<?= htmlentities($editUrl.'&op=edge') ?>">Edge Detection</a>
+    <a href="<?= htmlentities($editUrl.'&op=pixelate') ?>">Pixelate</a>
+    <a href="<?= htmlentities($editUrl.'&op=invert') ?>">Invert</a>
 
     <p>Contrast:
-        <a href="<?php echo htmlentities($editUrl.'&op=contrast&level='.($level+10)) ?>">+</a>
-        <a href="<?php echo htmlentities($editUrl.'&op=contrast&level='.($level-10)) ?>">-</a>
+        <a href="<?= htmlentities($editUrl.'&op=contrast&level='.($level+10)) ?>">+</a>
+        <a href="<?= htmlentities($editUrl.'&op=contrast&level='.($level-10)) ?>">-</a>
     </p>
 
     <p>Brightness:
-        <a href="<?php echo htmlentities($editUrl.'&op=brightness&level='.($level+10)) ?>">+</a>
-        <a href="<?php echo htmlentities($editUrl.'&op=brightness&level='.($level-10)) ?>">-</a>
+        <a href="<?= htmlentities($editUrl.'&op=brightness&level='.($level+10)) ?>">+</a>
+        <a href="<?= htmlentities($editUrl.'&op=brightness&level='.($level-10)) ?>">-</a>
     </p>
 </div>
 
